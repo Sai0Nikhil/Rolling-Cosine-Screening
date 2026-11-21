@@ -216,6 +216,16 @@ int main() {
 
     for (int d = 0; d < 2; d++) {
         FILE *fp = fopen(datasets[d], "rb");
+        if (!fp) {
+            char alt[512];
+            snprintf(alt, sizeof(alt), "data/%s", (d == 0) ? "ecoli.txt" : "bible.txt");
+            fp = fopen(alt, "rb");
+        }
+        if (!fp) {
+            char alt[512];
+            snprintf(alt, sizeof(alt), "../data/%s", (d == 0) ? "ecoli.txt" : "bible.txt");
+            fp = fopen(alt, "rb");
+        }
         if (!fp) continue;
         fseek(fp, 0, SEEK_END);
         long n_total = ftell(fp);

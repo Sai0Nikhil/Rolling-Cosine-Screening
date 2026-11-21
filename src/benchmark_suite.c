@@ -249,6 +249,16 @@ int main(int argc, char **argv) {
     for (int d = 0; d < 2; d++) {
         FILE *fp = fopen(datasets[d], "rb");
         if (!fp) {
+            char alt[512];
+            snprintf(alt, sizeof(alt), "data/%s", (d == 0) ? "ecoli.txt" : "bible.txt");
+            fp = fopen(alt, "rb");
+        }
+        if (!fp) {
+            char alt[512];
+            snprintf(alt, sizeof(alt), "../data/%s", (d == 0) ? "ecoli.txt" : "bible.txt");
+            fp = fopen(alt, "rb");
+        }
+        if (!fp) {
             printf("Error opening %s\n", datasets[d]);
             continue;
         }
