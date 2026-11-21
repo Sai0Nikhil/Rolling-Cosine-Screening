@@ -1,0 +1,15 @@
+# Compiled binaries
+run_precise_bench
+benchmark_suite
+*.o
+*.a
+*.so
+*.out
+
+# Python
+__pycache__/
+*.pyc
+
+# OS generated
+.DS_Store
+Thumbs.db
